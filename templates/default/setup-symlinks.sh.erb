@@ -1,0 +1,29 @@
+#!/bin/bash
+
+SRC="<%= @source %>"
+DST="<%= @dest %>"
+
+if [ "$UID" -ne 0 ]; then
+	exit 1
+fi
+
+if [ ! -e $DST ]; then
+	exit 1
+fi
+
+find $SRC -name "*.jsf" | while read file_src; do
+	name=`basename $file_src`
+	file_dst="$DST/$name"
+	echo -n "$name: "
+
+	if [ -h $file_dst ]; then
+		echo "is already a symlink, skip."
+		continue
+	fi
+	if [ -e $file_dst ]; then
+		echo -n "backup to $file_dst.orig, "
+		mv $file_dst "$file_dst.orig"
+	fi
+	echo "create symlink."
+	ln -s $file_src $file_dst
+done
