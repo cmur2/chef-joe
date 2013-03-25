@@ -1,5 +1,7 @@
 # chef-joe
 
+[![Build Status](https://travis-ci.org/cmur2/chef-joe.png)](https://travis-ci.org/cmur2/chef-joe)
+
 ## Description
 
 Installs [JOE](http://joe-editor.sourceforge.net/) (Joe's Own Editor) and the [improved syntax files](https://github.com/cmur2/joe-syntax) if requested.
