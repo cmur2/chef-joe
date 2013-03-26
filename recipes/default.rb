@@ -1,4 +1,2 @@
 
-package "joe" do
-  action :install
-end
+package "joe"
