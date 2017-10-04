@@ -9,9 +9,12 @@ directory overlay_dir do
   recursive true
 end
 
+overlay_repo_branch = "joe-3.7"
+overlay_repo_branch = "joe-4.4" if node['platform'] == "debian" and node['platform_version'].to_i >= 9
+
 git overlay_dir do
   repository node['joe']['overlay_repo']
-  reference "master"
+  reference overlay_repo_branch
   user "root"
   group "root"
   action :sync
